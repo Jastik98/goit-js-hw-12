@@ -39,5 +39,5 @@ export default function renderGallery(requestedHits, galleryNode) {
     }
   );
 
-  galleryNode.innerHTML = markup;
+  galleryNode.insertAdjacentHTML('beforeend', markup);
 }
