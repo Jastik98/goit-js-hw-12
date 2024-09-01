@@ -20,6 +20,7 @@ const galleryLightbox = new SimpleLightbox('.gallery a', {
 // Кнопка seach
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
+
   userRequest = event.target.elements.requestValue.value.trim();
 
   if (!userRequest) {
@@ -69,16 +70,18 @@ searchForm.addEventListener('submit', async event => {
 loadMoreBtn.addEventListener('click', async () => {
   showLoader(galleryList);
   hideLoadMoreBtn();
-  const { hight: itemHight } = document
+
+  const { height: itemHeight } = document
     .querySelector('.gallery-item')
     .getBoundingClientRect();
-
   try {
     const { hits: nextPage, lastPage } = await fetchingGalleryPage(userRequest);
     removeLoader();
     renderGallery(nextPage, galleryList);
     galleryLightbox.refresh();
-    window.scrollBy(0, itemHight * 2);
+    window.scrollBy(0, itemHeight * 2);
+    console.log(itemHeight);
+
     showLoadMoreBtn(lastPage);
   } catch (error) {
     console.error(error);
@@ -92,7 +95,7 @@ loadMoreBtn.addEventListener('click', async () => {
 });
 
 function showLoader(loader) {
-  loader.insertAdjacentHTML('afterend', `<span class="loader"></span>`);
+  loader.insertAdjacentHTML('afterend', `<span class='loader'></span>`);
 }
 function removeLoader(loaderNode = document.querySelector('.loader')) {
   if (loaderNode) {
