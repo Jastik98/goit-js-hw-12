@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default function fetchingGallery() {
   let pageNumber = 1;
-  const numberChoose = 15;
+  const numberChoose = 12;
 
   async function fetchingGalleryPage(userRequest) {
     const searchParams = new URLSearchParams({
